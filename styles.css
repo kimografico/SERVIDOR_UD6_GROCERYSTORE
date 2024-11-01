@@ -1,0 +1,147 @@
+body {
+    background: #6495ec;
+    text-align: center;
+    font-family: sans-serif;
+    justify-items: center;
+  }
+  
+  section {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  
+  h1 {
+    color: white;
+    font-size: 75px;
+    text-shadow: 3px 3px 10px black;
+    font-family: serif;
+  }
+  
+  .producto, .formulario {
+    background: white;
+    border-radius: 20px;
+    height: 250px;
+    padding: 15px;
+    margin: 20px;
+    text-align: left;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5);
+    transition: 0.5s;
+    word-wrap: break-word;
+    position: relative;
+  }
+
+  .producto{
+    filter: brightness(.85);
+  }
+  
+  .producto:hover {
+    transform: scale(1.1);
+    filter: brightness(1);
+  }
+  
+  .formulario {
+    width: 75%;
+    padding: 30px;
+    outline: 7px solid rgb(100, 100, 200);
+    height: inherit;
+  }
+  
+  .producto img, .formulario img {
+    float: right;
+    width: 100px;
+    margin-left: 25px;
+    transition: 0.5s;
+  }
+
+  .formulario img {
+    max-width: 200px;
+    width: 25%;
+  }
+  
+  .producto img:hover, .formulario img:hover {
+    transform: rotate(-10deg);
+  }
+  
+  .nombre {
+    font-weight: bold;
+    font-size: 1.5rem;
+    margin-top: 5px;
+    color: darkblue;
+    min-height: 100px;
+    align-content: center;
+  }
+  
+  .formulario .nombre {
+    font-size: 2rem;
+  }
+  
+  .description {
+    color: slategray;
+    font-size: 0.8rem;
+  }
+  
+  .producto a, .formulario a, button {
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    background: #c6dbff;
+    color: #144396;
+    padding: 5px 10px;
+    border-radius: 15px;
+    text-decoration: none;
+    font-size: 0.8rem;
+    transition: 0.5s;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .producto a:hover, .formulario a:hover, button:hover {
+    background: #6495ec;
+    color: rgb(0, 0, 65);
+    transform: scale(1.1);
+  }
+  
+  input[type="number"] {
+    width: 225px;
+    padding: 5px 20px;
+    border: 3px solid #007bff;
+    border-radius: 25px;
+    margin-top: 10px;
+}
+
+a {
+    background: #144396;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 15px;
+    text-decoration: none;
+    font-size: 0.8rem;
+    transition: 0.5s;
+    border: none;
+    display: inline-block
+}
+
+a:hover{
+    transform: scale(1.2);
+    transition: 0.5s;
+    background: #072e70;
+}
+
+.btn_carrito{
+    position: absolute;
+    top: 35px;
+    right: 35px;
+    font-size: 0.8rem;
+    color: darkblue;
+}
+
+.btn_carrito a{
+    font-size: 4rem;
+    background: none;
+    filter: brightness(0.7);
+}
+
+.btn_carrito a:hover{
+    filter: brightness(1);
+    text-shadow: 0 0 5px darkblue;
+}
