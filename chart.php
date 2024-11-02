@@ -19,33 +19,43 @@ include 'connection.php';
 
 $total = 0;
 
+if (isset($_SESSION['user'])) {
+    $userID = ($_SESSION['user']['Usuario']);
+if (!isset($_SESSION['cart'][$userID])) {
+    $_SESSION['cart'][$userID]=[];
+}
+
 if (isset($_GET['id']) && $_GET['id'] != null) {  // Si se ha pasado un ID...
     include 'form.inc.php'; // Se include el formulario para introducir cantidad
 
 } else {
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {  // Si se ha pasado un POST...
-    $id = $_POST['id'];
-    $producto = $_POST['producto'];
-    $imagen = $_POST['imagen'];
-    $precio = $_POST['precio'];
-    $cantidad = $_POST['cantidad'];
-    $unidades = $_POST['unidades'];
-    $maxud = '';
+        $id = $_POST['id'];
+        $producto = $_POST['producto'];
+        $imagen = $_POST['imagen'];
+        $precio = $_POST['precio'];
+        $cantidad = $_POST['cantidad'];
+        $unidades = $_POST['unidades'];
+        $maxud = '';
 
-    if ($cantidad > $unidades){
-        $cantidad = $unidades;
-        $maxud = '⚠️<b> No quedan tantas unidades</b>. Apuntado pedido máximo ⚠️<br><br>';
+        if (isset($_SESSION['cart'][$userID][$id])){
+            $cantidad = $cantidad + $_SESSION['cart'][$userID][$id]['cantidad']; // Se suma a la cantidad anterior, si la había
+        }
+
+        if ($cantidad > $unidades){
+            $cantidad = $unidades;
+            $maxud = '⚠️<b> No quedan tantas unidades</b>. Apuntado pedido máximo ⚠️<br><br>';
+        }
+
+        $_SESSION['cart'][$userID][$id] = [
+            'producto' => $producto,
+            'imagen' => $imagen,
+            'precio' => $precio,
+            'cantidad' => $cantidad
+        ];
     }
 
-    $_SESSION['cart'][$id] = [
-        'producto' => $producto,
-        'imagen' => $imagen,
-        'precio' => $precio,
-        'cantidad' => $cantidad
-    ];
-    }
-
-    foreach ($_SESSION['cart'] as $id => $item) {
+    foreach ($_SESSION['cart'][$userID] as $id => $item) {
         if (file_exists('img/' . $item['imagen'])) {
             $img = $item['imagen'];
         } else {
@@ -62,14 +72,14 @@ if (isset($_GET['id']) && $_GET['id'] != null) {  // Si se ha pasado un ID...
 
     if (isset($maxud)) echo $maxud;
 
-    if (empty($_SESSION['cart'])) {
+    if (empty($_SESSION['cart'][$userID])) {
         echo "<h2>El carrito está vacío</h2>";
     }
 
     echo '<b>TOTAL:</b> ' . number_format($total) . '€<br><br>';
     
 }
-
+}
 echo '<a href="index.php">VOLVER</a>'
 
 ?>
