@@ -79,7 +79,7 @@ session_start();
         if (isset($_SESSION['user'])) {
             echo '<a href="chart.php">🛒</a><br>';
         } else {
-            echo '<a href="#">🛒</a><br>';
+            echo '<a href="invita.php">🛒</a><br>';
         }
         echo $cantidadElementos . ' productos';  // Marca los productos distintos en el carrito (no cantidades)
         echo '</div>';
